@@ -1,0 +1,55 @@
+media:
+  input: assets/uploads
+  output: /assets/uploads
+  extensions: [jpg, jpeg, png, gif, webp, svg]
+
+content:
+  - name: musings
+    label: Musings
+    type: collection
+    path: musings_src
+    filename: '{fields.title}.md'
+    view:
+      fields: [title, date, category]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: category
+        label: Category
+        type: select
+        options:
+          values:
+            - Marketing Strategy
+            - Business Strategy
+            - Brand Strategy
+            - Useful Guides
+        default: Marketing Strategy
+        required: true
+      - name: date
+        label: Date
+        type: date
+        options:
+          format: yyyy-MM-dd
+        required: true
+      - name: hero
+        label: Header image (optional)
+        type: image
+      - name: excerpt
+        label: Short summary for the archive card (optional)
+        type: text
+      - name: dateDisplay
+        label: Date shown on the page (optional)
+        type: string
+      - name: readMin
+        label: Read time in minutes (optional)
+        type: number
+      - name: body
+        label: Article
+        type: rich-text
+        required: true
