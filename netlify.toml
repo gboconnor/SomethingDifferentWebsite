@@ -1,0 +1,8 @@
+# Tells Netlify how to build the site automatically on every change.
+# When you publish a musing in the editor, Netlify runs this and rebuilds the site.
+[build]
+  command = "pip install --quiet markdown && python3 build_site.py"
+  publish = "."
+
+[build.environment]
+  PYTHON_VERSION = "3.11"

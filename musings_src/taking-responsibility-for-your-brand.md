@@ -1,0 +1,12 @@
+---
+title: "Taking responsibility for your brand"
+category: "Brand Strategy"
+date: "2024-07-22"
+dateDisplay: "22 Jul 2024"
+readMin: 4
+hero: "https://www.datocms-assets.com/121193/1721596387-brand.jpeg?w=1000&fit=max&auto=format"
+---
+
+## Who is responsible for building your company’s brand?
+
+There is no doubt that “our marketing team” or “our head of marketing” would be popular answers, as they are the people who lead much of the brand management, communications, and experiences. They do the brand campaigns, after all.     But building a brand is every single person’s responsibility, and it starts from the top—the C-Suite. They are the ones who set the business strategy (what you do, how and why you do it, and how you make money), which shapes the brand strategy (how you present that to the world).     Brands are a collection of memories you build in customers' and prospective customers’ minds. Every single interaction a customer or prospective customer has with you is a chance to build a positive, neutral, or negative memory. The goal of any good company is to build as many positive brand memories and as few negative memories as possible. We’re all humans (and AI) who sometimes mess up, creating negative brand memories that, when dealt with properly, can become positive memories.    Anyone in your company who has anything to do with a customer, not just those who interact directly with customers, everyone, logistics, getting the product to the customer, finance, ensuring the payment process is smooth, R&D, designing better products that make customers lives better, the CEO, leading a company for the betterment of customers, employees, shareholders, and the community. All the people who support these people in doing what they have to do. Everyone. Even the partners you choose to work with. A single lousy experience that creates a negative memory can be enough to undo everything, and you’ve lost that customer and all the future revenue that goes with them.    The goal is to deliver the best products and services, customer experiences, brand experiences, brand communications, billing and financial experience, and after-sales service and experience possible, thus creating more positive memories that build more positive perceptions of your brand.    Building a stronger business comes from building a stronger brand. The stronger your brand, the stronger your business. And everyone is responsible for that.

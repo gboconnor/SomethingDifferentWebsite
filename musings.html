@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Musings | Something Different</title>
+<meta name="description" content="Practical, evidence-informed writing on brand, marketing, performance and leadership by Gareth O'Connor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="container">
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="Something Different"></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="nav">
+      <a href="index.html#what">What I do</a>
+      <a href="index.html#who">Who it's for</a>
+      <a href="musings.html">Musings</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn-primary" href="contact.html">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<section class="musings-head">
+  <div class="container">
+    <p class="eyebrow">Musings</p>
+    <h1>Thinking worth sharing.</h1>
+    <p class="lead" style="max-width:60ch;">Practical, evidence-informed writing on brand, marketing, performance and leadership. Free to read, and designed to help you make better decisions. Search the archive or filter by topic.</p>
+
+    <div class="controls">
+      <div class="search">
+        <input type="search" id="search" placeholder="Search by title or keyword…" aria-label="Search musings">
+      </div>
+      <div class="filters" id="filters"><!-- chips injected --></div>
+    </div>
+
+    <div class="sortbar">
+      <span id="count"></span>
+      <label>Sort:
+        <select id="sort">
+          <option value="new">Newest first</option>
+          <option value="old">Oldest first</option>
+          <option value="short">Quickest read</option>
+          <option value="long">Longest read</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px;">
+  <div class="container">
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand" href="index.html"><img src="assets/logo.png" alt="Something Different"></a>
+      <p style="margin-top:10px;max-width:36ch;">Brand &amp; growth strategy consultancy. Helping leadership teams get to the root and grow.</p>
+    </div>
+    <div>
+      <a class="btn btn-primary" href="contact.html">Get in touch</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/musings-data.js"></script>
+<script>
+(function () {
+  var DATA = window.MUSINGS || [];
+  var CAT_CLASS = {
+    "Marketing Strategy": "c-marketing",
+    "Business Strategy": "c-business",
+    "Brand Strategy": "c-brand",
+    "Useful Guides": "c-guides"
+  };
+  var state = { q: "", cat: "All", sort: "new" };
+
+  var cards = document.getElementById("cards");
+  var countEl = document.getElementById("count");
+  var searchEl = document.getElementById("search");
+  var sortEl = document.getElementById("sort");
+  var filtersEl = document.getElementById("filters");
+
+  // Build category chips (ordered by frequency, All first)
+  var counts = {};
+  DATA.forEach(function (p) { counts[p.category] = (counts[p.category] || 0) + 1; });
+  var cats = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; });
+  ["All"].concat(cats).forEach(function (c) {
+    var b = document.createElement("button");
+    b.className = "chip" + (c === "All" ? " active" : "");
+    b.textContent = c === "All" ? "All (" + DATA.length + ")" : c + " (" + counts[c] + ")";
+    b.dataset.cat = c;
+    b.onclick = function () {
+      state.cat = c;
+      filtersEl.querySelectorAll(".chip").forEach(function (x) { x.classList.remove("active"); });
+      b.classList.add("active");
+      render();
+    };
+    filtersEl.appendChild(b);
+  });
+
+  searchEl.addEventListener("input", function () { state.q = this.value.toLowerCase().trim(); render(); });
+  sortEl.addEventListener("change", function () { state.sort = this.value; render(); });
+
+  function sorters(a, b) {
+    switch (state.sort) {
+      case "old": return a.date < b.date ? -1 : 1;
+      case "short": return a.readMin - b.readMin;
+      case "long": return b.readMin - a.readMin;
+      default: return a.date < b.date ? 1 : -1;
+    }
+  }
+
+  function render() {
+    var list = DATA.filter(function (p) {
+      var okCat = state.cat === "All" || p.category === state.cat;
+      var okQ = !state.q ||
+        p.title.toLowerCase().indexOf(state.q) > -1 ||
+        (p.excerpt || "").toLowerCase().indexOf(state.q) > -1 ||
+        p.category.toLowerCase().indexOf(state.q) > -1;
+      return okCat && okQ;
+    }).sort(sorters);
+
+    countEl.textContent = list.length + (list.length === 1 ? " musing" : " musings");
+    cards.innerHTML = "";
+
+    if (!list.length) {
+      cards.innerHTML = '<p class="no-results">No musings match that search. Try a different keyword or clear the filter.</p>';
+      return;
+    }
+
+    list.forEach(function (p) {
+      var el = document.createElement("article");
+      el.className = "card";
+      el.innerHTML =
+        '<span class="tag ' + (CAT_CLASS[p.category] || "") + '">' + p.category + '</span>' +
+        '<h3><a href="' + p.url + '">' + p.title + '</a></h3>' +
+        '<p class="meta">' + p.dateDisplay + ' &middot; ' + p.readMin + ' min read</p>' +
+        '<p class="excerpt">' + (p.excerpt || "") + '</p>' +
+        '<a class="read" href="' + p.url + '">Read musing →</a>';
+      cards.appendChild(el);
+    });
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

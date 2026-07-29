@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Let's talk | Something Different</title>
+<meta name="description" content="Tell me a bit about what's going on and I'll come back within one business day. No cost and no obligation for a first conversation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="container">
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="Something Different"></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="nav">
+      <a href="index.html#what">What I do</a>
+      <a href="index.html#who">Who it's for</a>
+      <a href="musings.html">Musings</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn-primary" href="#form">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:40px;">
+  <div class="container">
+    <p class="eyebrow">Contact</p>
+    <h1>Let's talk.</h1>
+    <p class="lead" style="max-width:52ch;">Tell me a bit about what's going on and I'll come back to you within one business day. There's no cost and no obligation for a first conversation, just an honest view on whether I can help, and how.</p>
+  </div>
+</section>
+
+<section style="padding-top:20px;">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div>
+        <h2 style="font-size:1.5rem;">What happens next</h2>
+        <ol class="steps-mini">
+          <li><strong>You send a short note.</strong> A couple of lines on your situation is plenty to start.</li>
+          <li><strong>We have a conversation.</strong> A 30-minute call to understand the challenge and see if we're a fit.</li>
+          <li><strong>You get a clear next step.</strong> Whether that's working together or simply a pointer in the right direction.</li>
+        </ol>
+
+        <div class="contact-details">
+          <p style="margin-bottom:6px;"><strong style="color:var(--ink)">Prefer to reach out directly?</strong></p>
+          <p style="margin:0;">
+            <a href="mailto:gareth@somethingdifferent.co.nz">gareth@somethingdifferent.co.nz</a><br>
+            <a href="tel:+6421674364">+64 21 674 364</a><br>
+            <a href="https://nz.linkedin.com/in/gareth-o-connor-3b755a29" target="_blank" rel="noopener">Connect on LinkedIn</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- FORM — wired for Netlify Forms.
+           Submissions appear in your Netlify dashboard (Forms tab) and email you.
+           Set the notification email in Netlify: Site configuration > Forms >
+           Form notifications > add email notification. -->
+      <form id="form" class="form-card"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            action="/thanks.html">
+        <input type="hidden" name="form-name" value="contact">
+        <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone <span class="muted" style="font-weight:400;">(optional)</span></label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="field">
+          <label for="message">What's the challenge you're trying to solve?</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send my enquiry</button>
+        <p class="form-alt">I read every message myself and reply within one business day.</p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand" href="index.html"><img src="assets/logo.png" alt="Something Different"></a>
+      <p style="margin-top:10px;max-width:60ch;">Something Different is a strategic consultancy founded by Gareth O'Connor after a 20+ year career honed overseas and in Aotearoa. An award-winning strategist, Gareth has worked with some of New Zealand's and the world's biggest brands, including Unilever, Spark, ANZ, Foodstuffs, Ballantynes, Mercedes-Benz, Lotto NZ, Spa World, Restaurant Brands, Pernod Ricard, Bayer, HP, Activision and DB Breweries, more recent Something Different clients such as Ag Emissions, Tuatara Structures, Zentera Wool, Rangi Ruru and The Yarns Men, challenger brands like 2degrees and Skinny, and businesses just getting started.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
