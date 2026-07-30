@@ -8,6 +8,7 @@ import markdown
 
 SRC = "musings_src"
 OUT = "musings"
+DOMAIN = "https://somethingdifferent.co.nz"
 os.makedirs(OUT, exist_ok=True)
 
 CAT_CLASS = {
@@ -64,6 +65,24 @@ TPL = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} | Something Different</title>
 <meta name="description" content="{desc}">
+<link rel="canonical" href="{url}">
+<meta name="theme-color" content="#004240">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="64x64">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Something Different">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{ogimage}">
+<meta property="article:published_time" content="{date_iso}">
+<meta property="article:section" content="{category}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{ogimage}">
+{jsonld}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -169,6 +188,28 @@ for path in sorted(glob.glob(f"{SRC}/*.md")):
         fm_excerpt_slugs.add(slug)
     excerpt = fm_excerpt or plain[:155].strip()
 
+    url = f"{DOMAIN}/musings/{slug}.html"
+    if meta.get("hero"):
+        h = meta["hero"]
+        ogimage = h if h.startswith("http") else DOMAIN + (h if h.startswith("/") else "/" + h)
+    else:
+        ogimage = f"{DOMAIN}/assets/og-image.png"
+    jsonld_obj = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": meta["title"],
+        "description": excerpt,
+        "datePublished": date_iso,
+        "author": {"@type": "Person", "name": "Gareth O'Connor"},
+        "publisher": {"@type": "Organization", "name": "Something Different",
+                      "logo": {"@type": "ImageObject", "url": f"{DOMAIN}/assets/logo.png"}},
+        "image": ogimage,
+        "mainEntityOfPage": url,
+        "articleSection": meta["category"],
+    }
+    jsonld = ('<script type="application/ld+json">\n'
+              + json.dumps(jsonld_obj, ensure_ascii=False) + '\n</script>')
+
     page = TPL.format(
         title=html.escape(meta["title"]),
         desc=html.escape(excerpt.replace('"', "'")),
@@ -178,6 +219,10 @@ for path in sorted(glob.glob(f"{SRC}/*.md")):
         readMin=read_min,
         hero=hero,
         body=body_html,
+        url=url,
+        ogimage=html.escape(ogimage),
+        date_iso=date_iso,
+        jsonld=jsonld,
     )
     open(f"{OUT}/{slug}.html", "w", encoding="utf-8").write(page)
     posts.append({
@@ -209,5 +254,24 @@ with open("assets/musings-data.js", "w", encoding="utf-8") as f:
     json.dump(posts, f, ensure_ascii=False)
     f.write(";\n")
 
+# ---- sitemap.xml ----
+sm = [(f"{DOMAIN}/", None, "1.0"),
+      (f"{DOMAIN}/musings.html", None, "0.8"),
+      (f"{DOMAIN}/contact.html", None, "0.7")]
+for p in posts:
+    sm.append((f"{DOMAIN}/{p['url']}", p["date"], "0.6"))
+lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+for loc, lastmod, pr in sm:
+    lines.append("  <url>")
+    lines.append(f"    <loc>{loc}</loc>")
+    if lastmod:
+        lines.append(f"    <lastmod>{lastmod}</lastmod>")
+    lines.append(f"    <priority>{pr}</priority>")
+    lines.append("  </url>")
+lines.append("</urlset>")
+open("sitemap.xml", "w", encoding="utf-8").write("\n".join(lines) + "\n")
+
 print(f"Built {len(posts)} article pages -> {OUT}/")
+print(f"Wrote sitemap.xml ({len(sm)} urls)")
 print("Regenerated musings.json + assets/musings-data.js (local links)")
