@@ -266,6 +266,10 @@ with open("assets/musings-data.js", "w", encoding="utf-8") as f:
 
 # ---- sitemap.xml ----
 sm = [(f"{DOMAIN}/", None, "1.0"),
+      (f"{DOMAIN}/strategy-consultant", None, "0.9"),
+      (f"{DOMAIN}/brand-strategy", None, "0.9"),
+      (f"{DOMAIN}/marketing-strategy", None, "0.9"),
+      (f"{DOMAIN}/strategy-workshops", None, "0.9"),
       (f"{DOMAIN}/musings.html", None, "0.8"),
       (f"{DOMAIN}/contact.html", None, "0.7")]
 for p in posts:
