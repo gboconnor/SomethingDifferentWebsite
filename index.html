@@ -135,6 +135,11 @@ section{padding:clamp(84px,10vw,148px) 0;}
 .quote p{font-family:"Fraunces",serif;font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.4;color:var(--ink);font-weight:400;}
 .quote .mark{color:var(--pink);font-size:3rem;font-family:"Fraunces",serif;line-height:0;display:block;margin-bottom:10px;}
 .quote cite{display:block;margin-top:22px;font-style:normal;font-weight:600;font-size:.95rem;color:var(--muted);}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:54px;}
+.qcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:34px;position:relative;margin:0;}
+.qcard::before{content:"\201C";font-family:"Fraunces",serif;color:var(--pink);font-size:3rem;line-height:1;position:absolute;top:16px;left:22px;opacity:.28;}
+.qcard p{position:relative;font-size:1.04rem;line-height:1.6;color:var(--ink);margin:12px 0 0;}
+.qcard cite{display:block;margin-top:18px;font-style:normal;font-weight:600;font-size:.92rem;color:var(--muted);}
 
 /* meet gareth */
 .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:center;}
@@ -174,6 +179,7 @@ section{padding:clamp(84px,10vw,148px) 0;}
   .stages{grid-template-columns:repeat(2,1fr);border-top:none;}
   .stage{border-right:none;border-top:1px solid rgba(255,255,255,.16);}
   .about-grid{grid-template-columns:1fr;gap:36px;}
+  .quotes{grid-template-columns:1fr;}
   .about-photo{max-width:420px;}
   .nav-toggle{display:block;}
   .nav-links{display:none;}
@@ -314,10 +320,15 @@ section{padding:clamp(84px,10vw,148px) 0;}
     <div class="clients">
       <span>ANZ</span><span>Spark</span><span>2degrees</span><span>Skinny</span><span>Unilever</span><span>Foodstuffs</span><span>Lotto NZ</span><span>Mercedes-Benz</span><span>HP</span><span>Activision</span><span>Bayer</span><span>Pernod Ricard</span><span>DB Breweries</span><span>Restaurant Brands</span>
     </div>
-    <div class="quote">
-      <span class="mark">&#8220;</span>
-      <p>A great strategist makes the solution feel so logical that it's immediately obvious, and right. Gareth takes the time to truly understand the business problem, asks the right questions, and constantly simplifies the strategy. What you get back is clear, concise direction, and often a great strapline too.</p>
-      <cite>Ben Lott, CEO, Big on Writing</cite>
+    <div class="quotes">
+      <blockquote class="qcard">
+        <p>Gareth brought an incredible level of experience to our marketing strategy development, leveraging a solid framework he guided us through the process with a calm hand on the wheel. His ability to connect with the people in the room helped the team relax, which brought insights to the fore that were always known, but never captured. For a business that has always prided itself on its customer service, his insights clearly showed that there was more to do to bring the customer into the centre of our thinking, and unify the various parts of our business around this approach. We now have a clear view of what needs to be developed and built to meet our vision for growth in the short-term, and look forward to working with him in the near future to keep our thinking fresh and focused on long-term growth.</p>
+        <cite>Mike Harrison, CMO, Tuatara Structures</cite>
+      </blockquote>
+      <blockquote class="qcard">
+        <p>A great strategist makes the solution feel so logical that it's immediately obvious, and right. Gareth takes the time to truly understand the business problem, asks the right questions, and constantly simplifies the strategy. What you get back is clear, concise direction, and often a great strapline too.</p>
+        <cite>Ben Lott, CEO, Big on Writing</cite>
+      </blockquote>
     </div>
   </div>
 </section>
