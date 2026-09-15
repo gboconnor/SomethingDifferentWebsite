@@ -5,8 +5,6 @@ date: 2026-09-16
 excerpt: When new ideas emerge, splits and rivalries inevitably start to shape
   marketing discourse and practice. Here’s how they can play nicely together.
 ---
-
-
 ![Screenshot 2026-09-16 at 11.03.13.png](</assets/uploads/Screenshot 2026-09-16 at 11.03.13-1.png>)
 
 If you were to go out into the world and find yourself five accomplished marketers and ask them what “best practice marketing” looks like, I’m fairly sure that you will get five confident, but different, and quite possibly incompatible answers. Which, I appreciate, will probably not be helpful.
