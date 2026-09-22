@@ -2,7 +2,7 @@
 title: The Stronger Business Operating Model
 category: Useful Guides
 date: 2026-09-22
-hero: /assets/uploads/SD - Operating Model diagram.png
+hero: /assets/uploads/stronger-business-operating-model.png
 excerpt: Every business already has an operating model. The question is whether
   it was designed deliberately.
 readMin: 12
