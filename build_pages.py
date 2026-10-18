@@ -141,10 +141,10 @@ PAGES["strategy-consultant"] = dict(
 
 <section class="section-alt">
   <div class="container narrow">
-    <p class="eyebrow">The Better Business Operating Model</p>
+    <p class="eyebrow">The Stronger Business Operating Model</p>
     <h2>Performance is built across the organisation, not department by department</h2>
-    <p>Better businesses aren't built department by department. They're built by an operating system that works across the organisation. The Better Business Operating Model provides a practical way to diagnose where performance is being created, where it is being constrained and where leaders should focus next.</p>
-    <p style="margin-top:1.6rem;"><a class="btn btn-outline" href="musings/the-better-business-operating-model.html">Explore the Better Business Operating Model</a></p>
+    <p>Stronger businesses aren't built department by department. They're built by an operating system that works across the organisation. The Stronger Business Operating Model provides a practical way to diagnose where performance is being created, where it is being constrained and where leaders should focus next.</p>
+    <p style="margin-top:1.6rem;"><a class="btn btn-outline" href="musings/the-stronger-business-operating-model.html">Explore the Stronger Business Operating Model</a></p>
   </div>
 </section>
 
@@ -376,7 +376,7 @@ PAGES["strategy-workshops"] = dict(
     <p class="eyebrow">A practical toolkit for better conversations</p>
     <h2>The framework serves the problem, not the other way around</h2>
     <p>Behind the workshops sits the Something Different Manual: a growing collection of models, principles, diagnostic questions and practical tools developed through more than 20 years of working across strategy, brand, marketing and customer problems.</p>
-    <p>Depending on what we're trying to solve, we might use the Better Business Operating Model to diagnose where performance is being constrained. We might explore Customer, Category, Culture and Company to understand a brand or market problem. Or we might go deeper into Purpose, Value, Memory, Preference, Access, Experience and Consistency to understand where the organisation needs to become stronger.</p>
+    <p>Depending on what we're trying to solve, we might use the Stronger Business Operating Model to diagnose where performance is being constrained. We might explore Customer, Category, Culture and Company to understand a brand or market problem. Or we might go deeper into Purpose, Value, Memory, Preference, Access, Experience and Consistency to understand where the organisation needs to become stronger.</p>
     <p>And I'm not a neutral facilitator. I'll make sure the right conversations happen, but I'll also bring an independent perspective, challenge assumptions, introduce useful evidence and ask the difficult questions when they need asking.</p>
     <p>There will probably be Post-it Notes. But Post-it Notes aren't the output.</p>
   </div>
