@@ -5,8 +5,6 @@ date: 2026-09-24
 excerpt: Financial results tell you what a business produced. They cannot tell
   you whether it can produce it again.
 ---
-# **The most dangerous position in business is performing well**
-
 ### Financial results tell you what a business produced. They cannot tell you whether it can produce it again.
 
 Most businesses go through a situation very few notice. Revenue is fine. Margin holds. The board pack is mostly green. And underneath all of it, the business is getting weaker.
