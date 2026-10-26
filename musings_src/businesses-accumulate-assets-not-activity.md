@@ -4,8 +4,6 @@ category: Marketing Strategy
 date: 2026-10-02
 excerpt: The word you use for marketing determines what you can do with it.
 ---
-# **Businesses accumulate assets, not activity**
-
 ### The word you use for marketing determines what you can do with it.
 
 Sit in enough budget meetings, and you notice that marketing almost always arrives as a list of things to do. A campaign in March. A trade show in May. A new website, some sales collateral, a sponsorship that has been renewed for so long nobody remembers why. Finance looks at the list and sees costs, because that is what a list of activities is. Each item has a start date, an end date and an invoice.
