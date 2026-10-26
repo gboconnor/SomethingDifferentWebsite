@@ -5,8 +5,6 @@ date: 2026-10-14
 excerpt: Fixing the lowest score is the most rigorous-looking way I know to
   waste a year.
 ---
-# **Your weakest asset is not your biggest problem**
-
 ### Fixing the lowest score is the most rigorous-looking way I know to waste a year.
 
 I’ve come to recognise a moment in most strategy workshops. Something gets assessed, usually on a whiteboard, usually with coloured dots. A few items come out well, one comes out badly, and the room relaxes because it's now obvious what to do. Fix the weak one. It feels disciplined. It feels like the conclusion the evidence was pointing to all along.
