@@ -83,6 +83,29 @@ FOOTER = '''<footer class="footer">
 </body>
 </html>'''
 
+PROOF = '''
+<section class="section-alt">
+  <div class="container">
+    <p class="eyebrow">Proof</p>
+    <h2>Trusted by leadership teams across New Zealand and beyond</h2>
+    <div class="quotes">
+      <blockquote class="quote">
+        <p>Working with Gareth was an absolute pleasure. Using the Stronger Business framework helped us clarify our strategy and identify areas to focus on (and those to defer). Through the process, Gareth distilled a tonne of data, insights and business packs into a specific, actionable plan that we are now rolling out.</p>
+        <cite>Richard McRae, Head of Brand &amp; Marketing, Rocket Mobile</cite>
+      </blockquote>
+      <blockquote class="quote">
+        <p>Gareth brought an incredible level of experience to our marketing strategy development, guiding us through the process with a calm hand on the wheel. His ability to connect with the people in the room brought insights to the fore that were always known but never captured. We now have a clear view of what needs to be built to meet our vision for growth.</p>
+        <cite>Mike Harrison, CMO, Tuatara Structures</cite>
+      </blockquote>
+    </div>
+    <p class="client-label" style="margin-top:42px;text-align:center;">Selected clients</p>
+    <div class="clients">
+      <span>PGG Wrightson</span><span>Ballantynes</span><span>Spa World</span><span>Tuatara Structures</span><span>Rocket Mobile</span><span>ANZ</span><span>Spark</span><span>Foodstuffs</span><span>Unilever</span><span>2degrees</span><span>Lotto NZ</span><span>Restaurant Brands</span>
+    </div>
+  </div>
+</section>
+'''
+
 def jsonld(name, stype, desc):
     return ('<script type="application/ld+json">\n{"@context":"https://schema.org","@type":"Service",'
             '"serviceType":"' + stype + '","name":"' + name + '","description":"' + desc + '",'
@@ -423,6 +446,7 @@ for slug, p in PAGES.items():
                 .replace("__DESC__", p["desc"])
                 .replace("__CANON__", p["canon"])
                 .replace("__JSONLD__", p["jsonld"].replace("__CANON__", p["canon"])))
-    html = head + p["body"] + FOOTER
+    body = p["body"].replace('<section class="cta-band">', PROOF + '<section class="cta-band">')
+    html = head + body + FOOTER
     open(f"{slug}.html", "w", encoding="utf-8").write(html)
     print("wrote", slug + ".html", len(html), "bytes")
