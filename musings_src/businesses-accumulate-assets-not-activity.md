@@ -2,7 +2,7 @@
 title: Businesses accumulate assets, not activity
 category: Marketing Strategy
 date: 2026-10-02
-excerpt: The word you use for marketing determines what you can do with it.
+excerpt: Article 2 in the Stronger Business Operating Model series.
 ---
 ### The word you use for marketing determines what you can do with it.
 
