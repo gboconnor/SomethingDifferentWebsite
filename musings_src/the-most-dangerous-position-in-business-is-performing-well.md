@@ -2,8 +2,7 @@
 title: The most dangerous position in business is performing well
 category: Marketing Strategy
 date: 2026-09-24
-excerpt: Financial results tell you what a business produced. They cannot tell
-  you whether it can produce it again.
+excerpt: Article 1 in the Stronger Business Operating Model series.
 ---
 ### Financial results tell you what a business produced. They cannot tell you whether it can produce it again.
 
