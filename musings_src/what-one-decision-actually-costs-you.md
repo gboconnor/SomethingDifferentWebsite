@@ -2,6 +2,7 @@
 title: What one decision actually costs you
 category: Marketing Strategy
 date: 2026-11-03
+excerpt: Article 5 in the Stronger Business Operating Model series.
 ---
 One decision. Five consequences. Most businesses measure only the first.
 
