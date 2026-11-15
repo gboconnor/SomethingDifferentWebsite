@@ -2,7 +2,7 @@
 title: Consistency is the outcome. Stewardship is the work
 category: Marketing Strategy
 date: 2026-10-27
-excerpt: Article 5 in the Stronger Business Operating Model series.
+excerpt: Article 4 in the Stronger Business Operating Model series.
 ---
 ### Nothing erodes because somebody decides it should. That is exactly the problem.
 
