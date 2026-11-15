@@ -2,8 +2,7 @@
 title: Your weakest asset is not your biggest problem
 category: Marketing Strategy
 date: 2026-10-14
-excerpt: Fixing the lowest score is the most rigorous-looking way I know to
-  waste a year.
+excerpt: Article 4 in the Stronger Business Operating Model series.
 ---
 ### Fixing the lowest score is the most rigorous-looking way I know to waste a year.
 
