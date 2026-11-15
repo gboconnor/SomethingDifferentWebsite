@@ -19,16 +19,16 @@ Holding them together is **Stewardship**. Everybody agrees consistency matters. 
 
 ## Eight questions to start with
 
-You don't need to learn the model to use it. Answer these about your own business, and the model does its work behind them.
+You don’t need to learn the model to use it. These are the questions I ask at the start of every piece of work. Answer them about your own business, and the model does its work behind them.
 
-1. **The ambition.** What kind of stronger business are we trying to build?
-2. **Value.** Why would anyone choose us?
-3. **Memory.** Will they think of us when it matters?
-4. **Preference.** Will they choose us over the alternatives?
-5. **Access.** Can they act on that easily?
-6. **Experience.** Did we deliver what we promised?
-7. **Stewardship.** Are we compounding what we build, or rebuilding it?
-8. **Outcomes.** Is the business becoming stronger?
+1. What kind of stronger business are we trying to build, and would everyone on the leadership team describe it the same way?
+2. Of everything we report, what tells us whether the business is becoming stronger rather than simply what it produced last quarter?
+3. Which of this year’s results came from investments we are no longer making?
+4. What state is each of the five assets in, and which direction is each one moving?
+5. Which asset is currently limiting the whole?
+6. Where do we already have strength that something else is stopping us from using?
+7. What will our next significant decision do to each of the five?
+8. Who is responsible for making sure next year starts from a stronger base than this one?
 
 One warning before you start. Your weakest asset is not automatically your biggest problem. An asset can be weak without mattering much to the business you are trying to build, while another in reasonable shape is quietly holding everything else back.
 
@@ -38,4 +38,17 @@ The complete model, with the diagram, the definitions and the posture exercise. 
 
 [https://drive.google.com/file/d/1hTi2ifC1n_JvugP8rdbzc_FLMxTxfPSy/view?usp=sharing](https://drive.google.com/file/d/1hTi2ifC1n_JvugP8rdbzc_FLMxTxfPSy/view?usp=sharing)
 
-**Over the coming months, I'll take the model apart one piece at a time here in Musings.**
+**The series**
+
+I’ve written about each part of the model on its own, and each piece stands alone.
+
+1. The most dangerous position in business is performing well
+2. Businesses accumulate assets, not activity
+3. Your weakest asset is not your biggest problem
+4. Consistency is the outcome. Stewardship is the work
+5. What one decision actually costs you
+6. Memory takes years. Access takes weeks
+7. Five strong assets is not the goal
+8. Every business has an operating model
+
+If one of the eight questions gave you pause, that’s usually the place to start, and I’m always happy to have a chat: [gareth@somethingdifferent.co.nz](mailto:gareth@somethingdifferent.co.nz)
