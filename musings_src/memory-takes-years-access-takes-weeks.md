@@ -4,8 +4,6 @@ category: Marketing Strategy
 date: 2026-11-16
 excerpt: Article 6 in the Stronger Business Operating Model series.
 ---
-# **Memory takes years. Access takes weeks.**
-
 ### Why a plan that looks balanced on paper still fails.
 
 Most annual plans I see look balanced. Each part of the business has something, the budget is sensibly spread, and the targets add up. And a surprising number of them fail the same way, for a reason not visible on the page. The work in them runs on different clocks, and the plan treats them all as if they run on the same one.
