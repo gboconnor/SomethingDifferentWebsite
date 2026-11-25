@@ -316,3 +316,9 @@ section { padding: clamp(80px, 9vw, 132px) 0; }
   .cards { grid-template-columns: 1fr; }
   section { padding: 56px 0; }
 }
+
+/* related reading at the end of each musing */
+.post-related { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
+.post-related h2 { font-size: 1.25rem; margin-bottom: 12px; }
+.post-related ul { margin: 0 0 16px; padding-left: 1.1em; }
+.post-related li { margin-bottom: 6px; }

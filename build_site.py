@@ -23,13 +23,19 @@ def parse_front(text):
     meta, body = {}, text
     if m:
         block, body = m.group(1), m.group(2)
+        key = None
         for line in block.splitlines():
+            if line[:1] in (" ", "\t") and key and line.strip():
+                # continuation of a wrapped value from the line above
+                meta[key] = (meta[key] + " " + line.strip()).strip()
+                continue
             if ":" in line:
                 k, v = line.split(":", 1)
-                v = v.strip()
-                if len(v) >= 2 and v[0] in "\"'" and v[-1] == v[0]:
-                    v = v[1:-1]
-                meta[k.strip()] = v
+                key = k.strip()
+                meta[key] = v.strip()
+        for k, v in meta.items():
+            if len(v) >= 2 and v[0] in "\"'" and v[-1] == v[0]:
+                meta[k] = v[1:-1]
     return meta, body.strip()
 
 def drive_embed(m):
@@ -133,6 +139,7 @@ TPL = """<!DOCTYPE html>
         <div class="r">Founder &amp; Strategist, Something Different</div>
       </div>
     </div>
+{related}
   </div>
 </article>
 
@@ -150,7 +157,15 @@ TPL = """<!DOCTYPE html>
       <a class="brand" href="../index.html"><img src="../assets/logo.png" alt="Something Different"></a>
       <p style="margin-top:10px;max-width:36ch;">Brand &amp; growth strategy consultancy. Helping leadership teams get to the root and grow.</p>
     </div>
+    <div class="footer-services">
+      <span class="h">Services</span>
+      <a href="../strategy-consultant">Strategy consulting</a>
+      <a href="../brand-strategy">Brand strategy</a>
+      <a href="../marketing-strategy">Marketing strategy</a>
+      <a href="../strategy-workshops">Strategy workshops</a>
+    </div>
     <div>
+      <p><strong>Gareth O'Connor</strong><br>Founder &amp; Strategist<br>North Canterbury, New Zealand</p>
       <a class="btn btn-primary" href="../contact.html">Get in touch</a>
     </div>
   </div>
@@ -175,6 +190,37 @@ def est_read(text):
 
 md = markdown.Markdown(extensions=["extra", "sane_lists"])
 
+PERSON = {"@type": "Person", "name": "Gareth O'Connor",
+          "url": f"{DOMAIN}/#about", "jobTitle": "Founder & Strategist",
+          "sameAs": ["https://nz.linkedin.com/in/gareth-o-connor-3b755a29",
+                     "https://www.canterbury.ac.nz/about-uc/contact-us/external-directory/gareth-oconnor"]}
+
+# Which service page each category points readers to
+SERVICE_FOR = {
+    "Brand Strategy": ("brand-strategy", "Brand strategy"),
+    "Marketing Strategy": ("marketing-strategy", "Marketing strategy"),
+    "Business Strategy": ("strategy-consultant", "Strategy consulting"),
+    "Useful Guides": ("strategy-consultant", "Strategy consulting"),
+}
+
+def trim_summary(text, limit=158):
+    """First sentence(s) that fit within the limit, else cut at a word boundary."""
+    out = ""
+    for sent in re.split(r"(?<=[.!?])\s+", text):
+        if len(out) + len(sent) + 1 > limit:
+            break
+        out = (out + " " + sent).strip()
+    if not out:
+        out = text[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+    return out
+
+try:
+    CURATED = {p["url"].rstrip("/").split("/")[-1]: p["excerpt"]
+               for p in json.load(open("posts_meta.json")) if p.get("excerpt")}
+except Exception as e:
+    print("curated excerpts not loaded:", e)
+    CURATED = {}
+
 posts = []
 fm_excerpt_slugs = set()   # posts that supplied their own excerpt in frontmatter
 for path in sorted(glob.glob(f"{SRC}/*.md")):
@@ -196,7 +242,7 @@ for path in sorted(glob.glob(f"{SRC}/*.md")):
     fm_excerpt = (meta.get("excerpt") or "").strip()
     if fm_excerpt:
         fm_excerpt_slugs.add(slug)
-    excerpt = fm_excerpt or plain[:155].strip()
+    excerpt = fm_excerpt or CURATED.get(slug) or trim_summary(plain)
 
     url = f"{DOMAIN}/musings/{slug}.html"
     if meta.get("hero"):
@@ -210,8 +256,8 @@ for path in sorted(glob.glob(f"{SRC}/*.md")):
         "headline": meta["title"],
         "description": excerpt,
         "datePublished": date_iso,
-        "author": {"@type": "Person", "name": "Gareth O'Connor"},
-        "publisher": {"@type": "Organization", "name": "Something Different",
+        "author": PERSON,
+        "publisher": {"@type": "Organization", "name": "Something Different", "url": f"{DOMAIN}/",
                       "logo": {"@type": "ImageObject", "url": f"{DOMAIN}/assets/logo.png"}},
         "image": ogimage,
         "mainEntityOfPage": url,
@@ -220,7 +266,7 @@ for path in sorted(glob.glob(f"{SRC}/*.md")):
     jsonld = ('<script type="application/ld+json">\n'
               + json.dumps(jsonld_obj, ensure_ascii=False) + '\n</script>')
 
-    page = TPL.format(
+    page_args = dict(
         title=html.escape(meta["title"]),
         desc=html.escape(excerpt.replace('"', "'")),
         category=html.escape(meta["category"]),
@@ -234,8 +280,9 @@ for path in sorted(glob.glob(f"{SRC}/*.md")):
         date_iso=date_iso,
         jsonld=jsonld,
     )
-    open(f"{OUT}/{slug}.html", "w", encoding="utf-8").write(page)
     posts.append({
+        "_slug": slug,
+        "_args": page_args,
         "title": meta["title"],
         "category": meta["category"],
         "date": date_iso,
@@ -258,11 +305,46 @@ except Exception as e:
     print("excerpt merge skipped:", e)
 
 posts.sort(key=lambda p: p["date"], reverse=True)
-json.dump(posts, open("musings.json", "w"), indent=2, ensure_ascii=False)
+
+# ---- write article pages, each with related reading + a service link ----
+for p in posts:
+    same = [q for q in posts if q is not p and q["category"] == p["category"]][:3]
+    items = "".join(
+        f'<li><a href="{q["_slug"]}.html">{html.escape(q["title"])}</a></li>' for q in same)
+    svc_slug, svc_name = SERVICE_FOR.get(p["category"], ("strategy-consultant", "Strategy consulting"))
+    related = (
+        '    <aside class="post-related">\n'
+        f'      <h2>More on {html.escape(p["category"].lower())}</h2>\n'
+        f'      <ul>{items}</ul>\n'
+        f'      <p>Want help applying this to your business? See how I work on '
+        f'<a href="../{svc_slug}">{svc_name.lower()}</a>, or <a href="../musings.html">browse all musings</a>.</p>\n'
+        '    </aside>')
+    open(f"{OUT}/{p['_slug']}.html", "w", encoding="utf-8").write(
+        TPL.format(related=related, **p["_args"]))
+
+public = [{k: v for k, v in p.items() if not k.startswith("_")} for p in posts]
+json.dump(public, open("musings.json", "w"), indent=2, ensure_ascii=False)
 with open("assets/musings-data.js", "w", encoding="utf-8") as f:
     f.write("window.MUSINGS = ")
-    json.dump(posts, f, ensure_ascii=False)
+    json.dump(public, f, ensure_ascii=False)
     f.write(";\n")
+
+# ---- musings.html: write the archive into the page itself, so crawlers that
+# don't run JavaScript still see every article. The script then re-renders it
+# for search, filter and sort. ----
+def card(p):
+    return ('<article class="card">'
+            f'<span class="tag {CAT_CLASS.get(p["category"], "")}">{html.escape(p["category"])}</span>'
+            f'<h3><a href="{p["url"]}">{html.escape(p["title"])}</a></h3>'
+            f'<p class="meta">{html.escape(p["dateDisplay"])} &middot; {p["readMin"]} min read</p>'
+            f'<p class="excerpt">{html.escape(p.get("excerpt") or "")}</p>'
+            f'<a class="read" href="{p["url"]}">Read musing →</a></article>')
+arch = open("musings.html", encoding="utf-8").read()
+arch = re.sub(r"<!-- CARDS:START -->.*?<!-- CARDS:END -->",
+              lambda m: "<!-- CARDS:START -->\n" + "\n".join(card(p) for p in public) + "\n<!-- CARDS:END -->",
+              arch, flags=re.S)
+open("musings.html", "w", encoding="utf-8").write(arch)
+posts = public
 
 # ---- sitemap.xml ----
 sm = [(f"{DOMAIN}/", None, "1.0"),
@@ -285,6 +367,24 @@ for loc, lastmod, pr in sm:
     lines.append("  </url>")
 lines.append("</urlset>")
 open("sitemap.xml", "w", encoding="utf-8").write("\n".join(lines) + "\n")
+
+# ---- llms.txt: a plain-text guide to the site for AI tools ----
+llms = ["# Something Different", "",
+        "> Something Different is a brand and growth strategy consultancy run by Gareth O'Connor, "
+        "based in North Canterbury, New Zealand. Gareth works directly with leadership teams on strategic "
+        "diagnosis, brand strategy, positioning, growth and marketing strategy, communications planning "
+        "and executive advisory. He created and teaches Marketing & Strategic Intelligence in the "
+        "University of Canterbury's Executive MBA.", "",
+        "## Services", "",
+        f"- [Strategy consulting]({DOMAIN}/strategy-consultant): independent strategy work for leadership teams facing complex business problems",
+        f"- [Brand strategy]({DOMAIN}/brand-strategy): positioning, brand platforms and what a brand should mean",
+        f"- [Marketing strategy]({DOMAIN}/marketing-strategy): marketing and communications strategy and planning",
+        f"- [Strategy workshops]({DOMAIN}/strategy-workshops): facilitated executive workshops",
+        f"- [Contact]({DOMAIN}/contact.html): book a conversation", "",
+        "## Musings (articles by Gareth O'Connor)", ""]
+for p in posts:
+    llms.append(f"- [{p['title']}]({DOMAIN}/{p['url']}): {p.get('excerpt') or ''}".rstrip(": "))
+open("llms.txt", "w", encoding="utf-8").write("\n".join(llms) + "\n")
 
 print(f"Built {len(posts)} article pages -> {OUT}/")
 print(f"Wrote sitemap.xml ({len(sm)} urls)")
