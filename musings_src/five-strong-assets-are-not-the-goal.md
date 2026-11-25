@@ -4,13 +4,13 @@ category: Marketing Strategy
 date: 2026-11-18
 excerpt: Article 7 in the Stronger Business Operating Model series.
 ---
-# **Five strong assets are not the goal**
-
 ### Why scoring five things out of five is the wrong instrument, and what to use instead.
 
 When I first sketched what became the Stronger Business Operating Model, it was a doodle in my notebook with five assets on it. My original thinking was that if you improved each of the five every year, you would steadily increase your chances of building a stronger business. So I scored each asset out of five. It was the obvious thing to do once you have five of anything, and it produces a satisfying chart, usually a spider diagram, with a shape that everybody can look at and discuss.
 
 The more time I spent with it, and the more clients I ran through it, the more I realised I should stop doing that, because the chart steered every conversation towards the same conclusion. Get the low scores up. Make the shape rounder. Aim, eventually, for five fives. That conclusion is wrong for almost every business, and a chart that keeps pointing people towards it does harm, no matter how rigorous it looks.
+
+
 
 #### **Symmetry is not strength**
 
@@ -22,6 +22,8 @@ Each of those businesses would score poorly on at least one asset, and each woul
 
 Aiming for five equal scores spreads investment evenly across all five and builds none of them to the level that actually matters for the business you are trying to become. It looks balanced. It is mostly a way of avoiding a choice. If you have read any of my previous articles, you will know that strategy is about making choices: saying yes to the things that matter most and no to the things that don’t, at least for this year.
 
+
+
 #### **Fit, not symmetry**
 
 The better question is not how strong each asset is. It is what shape of strength the business needs, given what it is trying to become.
@@ -29,6 +31,8 @@ The better question is not how strong each asset is. It is what shape of strengt
 That is why, in the Stronger Business Operating Model, the Stronger Business Ambition sits at the centre of the diagram. The five assets are not assessed against a universal standard. They are assessed against the ambition. A business that wants to be the easiest option in its category needs a different shape from one that wants to be the one people are proud to have chosen, and both need a different shape from one that wants to be the obvious specialist.
 
 Once the ambition is clear, some assets matter a great deal, and others need only be good enough. Good enough is a real standard, not an excuse. An asset that falls below it will hold everything else back, which is the argument I made earlier in this series about the binding constraint: the one thing limiting the whole business. But above that threshold, more is not automatically better, and the money is usually more useful elsewhere. That matters because very few businesses sit on piles of cash and can do everything. Choices have to be made, and while nothing is guaranteed in a moving market with fickle customers, getting them wrong can do lasting damage to a business’s prospects.
+
+
 
 #### **The Asset Posture**
 
@@ -51,6 +55,8 @@ You cannot strengthen all five at once, so choosing what to strengthen means dec
 A posture is also an instruction. Everyone in the business who comes into contact with an asset knows what they are supposed to do with it: protect it, strengthen it, repair it, maintain it or reconsider it.
 
 That makes it a natural partner to stewardship, and the work of looking after assets over time. Think of how many strategy days you have sat through that ended with a big document and nothing much happening afterwards. Stewardship stops that. It makes sure everyone knows their role, that the right goals and measures are in place, and that someone is responsible for seeing the improvements through, so the effort creates momentum rather than busyness. A score tells you where you are. A posture tells everyone what to do next, and what to leave well alone.
+
+
 
 #### **Where this leaves the chart**
 
